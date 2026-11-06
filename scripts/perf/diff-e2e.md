@@ -113,9 +113,7 @@ A one-pair small-fixture smoke runs as **ordinary validation**, with no timing
 acceptance or fabricated exclusive/preparation receipts:
 
 ```bash
-~/build-workers/ifc-fleet run --host pop-os --kind ordinary \
-  --storage-task issue8042-v4-smoke --cwd /absolute/clean/harness -- \
-  env NODE_OPTIONS=--max-old-space-size=8192 node scripts/perf/diff-e2e.mjs dry-run --base-root /absolute/prepared-ts \
+env NODE_OPTIONS=--max-old-space-size=8192 node scripts/perf/diff-e2e.mjs dry-run --base-root /absolute/prepared-ts \
   --branch-root /absolute/prepared-public-rust --fixture-root /absolute/fixtures \
   --out /absolute/task-output/smoke \
   --large-base /absolute/frozen/source.ifc \
@@ -157,33 +155,14 @@ pinned toolchains and root pnpm/Turbo dependency builds. Keep the v3 TS arm
 `a3641a732a63beac0f90718d86d33585409faa33` (the main merge-base used by the
 recorded v3 cohort); the parent chooses the candidate tip with the handle API.
 Regenerate v4 bindings and approval against these exact prepared arms and the
-v4 harness source. A v3 protocol hash cannot authorize a v4 run. Ordinary validation
-continues through `~/build-workers/ifc-fleet`. For this proposed custom protocol,
-source-pinned, artifact-producing preparation must stay on the measurement host.
-It may use that host's registered `~/build-workers/run-heavy` directly with
-explicit `--kind ordinary`, followed by the complete custom cohort with explicit
-`--kind benchmark`. Invoke each launcher outside any existing reservation;
-never nest admission or invoke fleet/qualification inside an admitted command.
-
-Policy references: `~/build-workers/fleet-policy.md` line 9 preserves host-local
-commands and exclusive physical-host timing; line 30 retains the original explicit
-workflow for custom/WASM benchmarks. `~/build-workers/AGENTS.md` lines 5–6 require
-one shared storage task and publication of launch-time declared artifacts.
-The current fleet facade does not forward `--artifact` in local or remote calls;
-the registered host-local launcher accepts repeated `--artifact` and records
-their digests in the original scheduler execution receipt's `artifacts`.
-This narrow preparation route supplies the provenance required by
-`validateBuildReceipt`; it changes no deployed worker, receipt format or verifier.
+v4 harness source. A v3 protocol hash cannot authorize a v4 run. Source-pinned, artifact-producing preparation must stay on the
+measurement host, and the complete cohort runs exclusively on that host.
 
 Preparation invocation template (repeat for base and branch, sharing the same
 task ID; CPU count, memory in GiB and timeout in seconds are explicit bounds):
 
 ```bash
-~/build-workers/run-heavy --cwd /absolute/branch --kind ordinary \
-  --storage-task UNIQUE_COHORT_TASK --cpu 4 --memory 16 --timeout 7200 \
-  --artifact /absolute/task-output/branch.build-manifest.json \
-  --artifact /absolute/task-output/branch.inventory.json \
-  -- bash /absolute/preparation/prepare-branch.sh
+bash /absolute/preparation/prepare-branch.sh
 ```
 
 The preparation script is a template path, not an existing or successful build:
@@ -261,7 +240,7 @@ that exact protocol hash. Admission JSON remains:
 ```json
 {
   "approvedProtocolSha256": "EXACT_PROTOCOL_SHA256",
-  "hostname": "pop-os",
+  "hostname": "example-host",
   "exclusiveReceipt": "/absolute/evidence/original-exclusive-admission.json",
   "preparation": {
     "base": { "inventory": "/absolute/evidence/base.inventory.json", "receipt": "/absolute/evidence/base.build-wrapper.json" },
@@ -273,11 +252,7 @@ that exact protocol hash. Admission JSON remains:
 On Pop, outside any reservation, use one task for preparation and measurement:
 
 ```bash
-~/build-workers/run-heavy --cwd /absolute/clean/harness --kind benchmark \
-  --storage-task issue8042-v4-cohort --cpu 24 --memory 48 --timeout 12240 \
-  --artifact /absolute/task-output/cohort/result.json \
-  --artifact /absolute/task-output/cohort/proofs.jsonl \
-  -- node scripts/perf/diff-e2e.mjs run \
+node scripts/perf/diff-e2e.mjs run \
   --protocol /absolute/evidence/protocol.json --admission /absolute/evidence/admission.json \
   --base-root /absolute/prepared-ts --branch-root /absolute/prepared-public-rust \
   --fixture-root /absolute/fixtures --out /absolute/task-output/cohort

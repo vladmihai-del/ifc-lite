@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
-// Regeneration is a heavy operation: invoke under the project fleet admission.
+// Regeneration is a heavy operation.
 // Normal package builds only verify the committed artifact, requiring no Rust.
 import { createHash } from 'node:crypto';
 import { readFileSync, writeFileSync, readdirSync, copyFileSync, mkdirSync, mkdtempSync, rmSync } from 'node:fs';
