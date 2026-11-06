@@ -1,5 +1,18 @@
 # @ifc-lite/viewer-embed
 
+## 1.15.29
+
+### Patch Changes
+
+- Updated dependencies [[`b39b157`](https://github.com/LTplus-AG/ifc-lite/commit/b39b1578fd76588b4d8d7c267cbb5da50b9e9868), [`2b2a27a`](https://github.com/LTplus-AG/ifc-lite/commit/2b2a27a1873071e5e6f129ba0cdb8ffa7c3410cd), [`aca42e7`](https://github.com/LTplus-AG/ifc-lite/commit/aca42e7780691e2b6325e77ada6736233a739b1e), [`2787019`](https://github.com/LTplus-AG/ifc-lite/commit/27870190d28396e8048d01918f6b8d9a6d06d36c), [`8719cdb`](https://github.com/LTplus-AG/ifc-lite/commit/8719cdbe0390c5f8c1df13e707037094a28e86e6), [`2b2a27a`](https://github.com/LTplus-AG/ifc-lite/commit/2b2a27a1873071e5e6f129ba0cdb8ffa7c3410cd), [`0d85a69`](https://github.com/LTplus-AG/ifc-lite/commit/0d85a693a5245da8f05a7e257fa44de94158f2c5), [`4fa38a4`](https://github.com/LTplus-AG/ifc-lite/commit/4fa38a44dc4a8afb2014e6f6c816673179fbaac5), [`6079027`](https://github.com/LTplus-AG/ifc-lite/commit/607902770a0ecdea2b396f8574e2d7579896f7fe), [`e4c95a6`](https://github.com/LTplus-AG/ifc-lite/commit/e4c95a6ccde8eaa013810c46bfa6dcc2ddbc4186), [`d4e4533`](https://github.com/LTplus-AG/ifc-lite/commit/d4e4533046dc18eeb3eec1a838221c069cbe9ddb), [`5560708`](https://github.com/LTplus-AG/ifc-lite/commit/5560708619c83ac2e52ac26ea1852477e7c03ad0), [`2b2a27a`](https://github.com/LTplus-AG/ifc-lite/commit/2b2a27a1873071e5e6f129ba0cdb8ffa7c3410cd), [`05e2d7d`](https://github.com/LTplus-AG/ifc-lite/commit/05e2d7dd9df47ded6482c18c595e28334b8b1a0b), [`019d9b2`](https://github.com/LTplus-AG/ifc-lite/commit/019d9b2e398d0172c44f07a391918ae26708b1cf), [`0f57524`](https://github.com/LTplus-AG/ifc-lite/commit/0f57524cfe347d29d68f53df7fc97f0b1f80d61a), [`cc5dcbd`](https://github.com/LTplus-AG/ifc-lite/commit/cc5dcbd4ee6cf35d624b0247edbb89ef35381c6e), [`2b2a27a`](https://github.com/LTplus-AG/ifc-lite/commit/2b2a27a1873071e5e6f129ba0cdb8ffa7c3410cd), [`dcc0bda`](https://github.com/LTplus-AG/ifc-lite/commit/dcc0bdac03d03e81a75840497e8c11c4263a1287)]:
+  - @ifc-lite/renderer@7.2.0
+  - @ifc-lite/cache@3.7.5
+  - @ifc-lite/geometry@8.2.0
+  - @ifc-lite/wasm@12.3.0
+  - @ifc-lite/pointcloud@0.15.0
+  - @ifc-lite/diff@0.13.2
+  - @ifc-lite/ifcx@4.6.1
+
 ## 1.15.28
 
 ### Patch Changes
